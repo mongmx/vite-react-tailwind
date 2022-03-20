@@ -1,8 +1,5 @@
 import { Link, useRoute } from "wouter";
-import IconDashboard from "./icons/IconDashboard";
-import IconProducts from "./icons/IconProducts";
-import IconOrders from "./icons/IconOrders";
-import IconUsers from "./icons/IconUsers";
+import { ClipboardListIcon, CubeIcon, HomeIcon, UserGroupIcon } from "@heroicons/react/outline";
 
 const ActiveLink = props => {
   const [isActive] = useRoute(props.href);
@@ -31,34 +28,26 @@ const Sidebar = () => {
         <ul className="flex flex-col w-full">
           <li className="my-px">
             <ActiveLink href="/">
-              <span className="flex items-center justify-center text-lg">
-                <IconDashboard />
-              </span>
-              <span className="ml-3">Dashboard</span>
+              <HomeIcon className="w-6 h-6 mr-3" />
+              Dashboard
             </ActiveLink>
           </li>
           <li className="my-px">
             <ActiveLink href="/products">
-              <span className="flex items-center justify-center text-lg">
-                <IconProducts />
-              </span>
-              <span className="ml-3">Products</span>
+              <CubeIcon className="w-6 h-6 mr-3" />
+              Products
             </ActiveLink>
           </li>
           <li className="my-px">
             <ActiveLink href="/orders">
-              <span className="flex items-center justify-center text-lg">
-                <IconOrders />
-              </span>
-              <span className="ml-3">Orders</span>
+              <ClipboardListIcon className="w-6 h-6 mr-3" />
+              Orders
             </ActiveLink>
           </li>
           <li className="my-px">
             <ActiveLink href="/users">
-              <span className="flex items-center justify-center text-lg">
-                <IconUsers />
-              </span>
-              <span className="ml-3">Users</span>
+              <UserGroupIcon className="w-6 h-6 mr-3" />
+              Users
             </ActiveLink>
           </li>
         </ul>
