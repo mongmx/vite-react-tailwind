@@ -1,4 +1,5 @@
 import { Route, Switch } from "wouter";
+import routes from '../Routes';
 
 import Dashboard from "../pages/Dashboard";
 import Products from "../pages/Products";
@@ -9,18 +10,11 @@ const Content = () => {
   return (
     <>
       <Switch>
-        <Route path="/">
-          <Dashboard />
-        </Route>
-        <Route path="/products">
-          <Products />
-        </Route>
-        <Route path="/orders">
-          <Orders />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
+        {routes.map((route) => (
+          <Route path={route.path} key={route.path}>
+            {route.component}
+          </Route>
+        ))}
       </Switch>
     </>
   );

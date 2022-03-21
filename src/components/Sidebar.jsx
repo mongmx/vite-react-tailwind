@@ -1,5 +1,5 @@
 import { Link, useRoute } from "wouter";
-import { ClipboardListIcon, CubeIcon, HomeIcon, UserGroupIcon } from "@heroicons/react/outline";
+import routes from '../Routes';
 
 const ActiveLink = props => {
   const [isActive] = useRoute(props.href);
@@ -26,30 +26,14 @@ const Sidebar = () => {
       </div>
       <div>
         <ul className="flex flex-col w-full">
-          <li className="my-px">
-            <ActiveLink href="/">
-              <HomeIcon className="w-6 h-6 mr-3" />
-              Dashboard
-            </ActiveLink>
-          </li>
-          <li className="my-px">
-            <ActiveLink href="/products">
-              <CubeIcon className="w-6 h-6 mr-3" />
-              Products
-            </ActiveLink>
-          </li>
-          <li className="my-px">
-            <ActiveLink href="/orders">
-              <ClipboardListIcon className="w-6 h-6 mr-3" />
-              Orders
-            </ActiveLink>
-          </li>
-          <li className="my-px">
-            <ActiveLink href="/users">
-              <UserGroupIcon className="w-6 h-6 mr-3" />
-              Users
-            </ActiveLink>
-          </li>
+          {routes.map((route) => (
+            <li className="my-px" key={route.path}>
+              <ActiveLink href={route.path}>
+                {route.icon}
+                {route.name}
+              </ActiveLink>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

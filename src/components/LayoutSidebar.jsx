@@ -8,7 +8,7 @@ export default function Layout() {
       <Sidebar />
       <main className="flex flex-col flex-grow">
         <Header />
-        <div className="flex flex-col flex-grow p-4 bg-gray-200">
+        <div className="flex flex-col flex-grow p-4 bg-gray-100">
           <div className="flex flex-col flex-grow bg-white rounded p-4">
             <Content />
           </div>
