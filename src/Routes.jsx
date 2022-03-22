@@ -11,25 +11,25 @@ import Users from "./pages/Users";
 
 const routes = [
     {
-        path: '/',
+        path: '/app',
         icon: <HomeIcon className="w-6 h-6 mr-3" />,
         name: 'Dashboard',
         component: <Dashboard />,
     },
     {
-        path: '/products',
+        path: '/app/products',
         icon: <CubeIcon className="w-6 h-6 mr-3" />,
         name: 'Products',
         component: <Products />,
     },
     {
-        path: '/orders',
+        path: '/app/orders',
         icon: <ClipboardListIcon className="w-6 h-6 mr-3" />,
         name: 'Orders',
         component: <Orders />,
     },
     {
-        path: '/users',
+        path: '/app/users',
         icon: <UserGroupIcon className="w-6 h-6 mr-3" />,
         name: 'Users',
         component: <Users />,

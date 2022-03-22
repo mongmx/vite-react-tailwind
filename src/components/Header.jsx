@@ -1,13 +1,16 @@
-import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
+import { useSignOut } from 'react-auth-kit'
+import { Menu, Transition } from '@headlessui/react'
 import { LogoutIcon, CogIcon, UserCircleIcon } from '@heroicons/react/outline'
 
 const Header = () => {
+  const signOut = useSignOut()
+
   return (
     <header className="sticky top-0 bg-white shadow py-2 px-4 uppercase text-right">
       <Menu as="div" className="relative inline-block text-left">
         <Menu.Button >
-          <div className="inline-flex items-center justify-center w-10 h-10 text-sm text-gray-300 bg-blue-900 rounded-full right-0">
+          <div className="inline-flex items-center justify-center w-10 h-10 text-sm text-gray-100 bg-blue-900 rounded-full right-0">
             TW
           </div>
         </Menu.Button>
@@ -51,6 +54,7 @@ const Header = () => {
                   <button
                     className={`${active ? 'bg-blue-900 text-gray-300' : 'text-gray-700'
                       } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                    onClick={() => signOut()}
                   >
                     <LogoutIcon className="w-5 h-5 mr-2" />
                     Logout

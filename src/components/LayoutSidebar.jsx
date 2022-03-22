@@ -1,6 +1,7 @@
+import { Outlet } from "react-router-dom";
+import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Content from "./Content";
-import Sidebar from "./Sidebar";
 
 export default function Layout() {
   return (
@@ -10,10 +11,11 @@ export default function Layout() {
         <Header />
         <div className="flex flex-col flex-grow p-4 bg-gray-100">
           <div className="flex flex-col flex-grow bg-white rounded p-4">
-            <Content />
+            {/* <Content /> */}
+            <Outlet />
           </div>
         </div>
-      </main>
-    </div>
+      </main >
+    </div >
   );
 }
