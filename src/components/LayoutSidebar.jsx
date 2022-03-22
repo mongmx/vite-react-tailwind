@@ -1,7 +1,8 @@
-import { Outlet } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
-import Content from "./Content";
+import Dashboard from "../pages/Dashboard"
+import Products from "../pages/Products"
 
 export default function Layout() {
   return (
@@ -11,8 +12,14 @@ export default function Layout() {
         <Header />
         <div className="flex flex-col flex-grow p-4 bg-gray-100">
           <div className="flex flex-col flex-grow bg-white rounded p-4">
-            {/* <Content /> */}
-            <Outlet />
+            <Routes>
+              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="products" element={<Products />} />
+              <Route
+                path="*"
+                element={<Navigate to="dashboard" replace />}
+              />
+            </Routes>
           </div>
         </div>
       </main >

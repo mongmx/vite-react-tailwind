@@ -11,7 +11,7 @@ import Users from "./pages/Users";
 
 const routes = [
     {
-        path: '/app',
+        path: '/app/dashboard',
         icon: <HomeIcon className="w-6 h-6 mr-3" />,
         name: 'Dashboard',
         component: <Dashboard />,
