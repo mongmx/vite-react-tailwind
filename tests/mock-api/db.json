@@ -6,8 +6,14 @@
     "role": "developer"
   },
   "signin": {
-    "email": "test@test.com",
-    "password": "123456"
+    "email": "test@test.dev",
+    "password": "123456",
+    "token": "35v3443bn368367n306306wbn407qn420b436b4",
+    "authState": {
+      "name": "React User",
+      "uid": 123456
+    },
+    "expiresIn": 120
   },
   "products": [
     {

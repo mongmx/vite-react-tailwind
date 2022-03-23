@@ -3,6 +3,7 @@ import { useIsAuthenticated, useSignIn } from 'react-auth-kit'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
+import axios from 'axios';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -22,23 +23,72 @@ const Login = () => {
    *
    * This function demostrate a dummy authentication, using useSignIn function
    */
-  const loginHandler = () => {
-    // Assuming that, all network Request is successfull, and the user is authenticated
+  const loginHandler = (e) => {
+    e.preventDefault()
+    axios.post('/api/auth/signin', 'formData')
+      .then((res) => {
+        if (res.status === 200) {
+          if (signIn({
+            token: res.data.token,
+            expiresIn: res.data.expiresIn,
+            tokenType: 'Bearer',
+            authState: res.data.authUserState,
+            // refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
+            // refreshTokenExpireIn: res.data.refreshTokenExpireIn // Only if you are using refreshToken feature
+          })) {
+            navigate('/app')
+          } else {
+            alert("Error Occoured. Try Again")
+          }
+        }
+      })
 
-    if (signIn({
-      token: '35v3443bn368367n306306wbn407qn420b436b4', //Just a random token
-      tokenType: 'Bearer',    // Token type set as Bearer
-      authState: { name: 'React User', uid: 123456 },   // Dummy auth user state
-      expiresIn: 120  // Token Expriration time, in minutes
-    })) {
-      // If Login Successfull, then Redirect the user to secure route
-      navigate('/app')
-    } else {
-      // Else, there must be some error. So, throw an error
-      alert("Error Occoured. Try Again")
-    }
+    // for testing purpose
+    // if (signIn({
+    //   token: '35v3443bn368367n306306wbn407qn420b436b4', //Just a random token
+    //   tokenType: 'Bearer',                              // Token type set as Bearer
+    //   authState: { name: 'React User', uid: 123456 },   // Dummy auth user state
+    //   expiresIn: 120                                    // Token Expriration time, in minutes
+    // })) {
+    //   navigate('/app') // If Login Successfull, then Redirect the user to secure route
+    // } else {
+    //   alert("Error Occoured. Try Again") // Else, there must be some error. So, throw an error
+    // }
   }
-  console.log(isAuthenticated())
+
+  const onSubmit = async (formData) => {
+    // setIsSigningIn(true);
+    try {
+      axios.get('http://localhost:8080/api/auth/signin', formData)
+        .then((res) => {
+          if (res.status === 200) {
+            if (signIn({
+              token: res.data.token,
+              expiresIn: res.data.expiresIn,
+              tokenType: 'Bearer',
+              authState: res.data.authState,
+              // refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
+              // refreshTokenExpireIn: res.data.refreshTokenExpireIn // Only if you are using refreshToken feature
+              refreshToken: '23mv86n790g4vm2706c2m38v6n790',
+              refreshTokenExpireIn: 60
+            })) {
+              // toast.success('Successfully!')
+              navigate('/app')
+            } else {
+              alert("Error Occoured. Try Again")
+            }
+          }
+        })
+
+    } catch (err) {
+      // err.response.data.errors.forEach((err) => toast.error(err.message));
+      // toast.error(err.response.data.message);
+      alert(err, "Error Occoured. Try Again")
+    }
+    // setIsSigningIn(false);
+  };
+
+  // console.log(isAuthenticated())
   if (isAuthenticated()) {
     // If authenticated user, then redirect to secure dashboard
 
@@ -65,7 +115,7 @@ const Login = () => {
                     password: '123456',
                   }}
                   validationSchema={validationSchema}
-                  onSubmit={loginHandler}
+                  onSubmit={onSubmit}
                 >
                   <Form>
                     <label className="mt-4 block">
