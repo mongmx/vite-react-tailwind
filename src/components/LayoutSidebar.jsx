@@ -3,6 +3,8 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import Dashboard from "../pages/Dashboard"
 import Products from "../pages/Products"
+import Orders from "../pages/Orders"
+import Users from "../pages/Users";
 
 export default function Layout() {
   return (
@@ -15,6 +17,8 @@ export default function Layout() {
             <Routes>
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="products" element={<Products />} />
+              <Route path="orders" element={<Orders />} />
+              <Route path="users" element={<Users />} />
               <Route
                 path="*"
                 element={<Navigate to="dashboard" replace />}
