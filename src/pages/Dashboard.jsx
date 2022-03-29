@@ -25,16 +25,16 @@ const Dashboard = () => {
       <PageTitle>Dashboard</PageTitle>
       <div className="w-64 mt-4 grid grid-cols-1 gap-6">
         <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full name"
-          aria-label="fullname"
-          className="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-blue-500"
-        />
-        <Button type="submit" value="Submit">Submit</Button>
-      </form>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="Full name"
+            aria-label="fullname"
+            className="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-blue-500"
+          />
+          <Button type="submit" value="Submit">Submit</Button>
+        </form>
       </div>
     </>
   );

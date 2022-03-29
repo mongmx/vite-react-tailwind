@@ -1,10 +1,11 @@
-import { Routes, Route, Navigate } from "react-router-dom";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
+import { Routes, Route, Navigate } from "react-router-dom"
+import Sidebar from "./Sidebar"
+import Header from "./Header"
 import Dashboard from "../pages/Dashboard"
 import Products from "../pages/Products"
 import Orders from "../pages/Orders"
-import Users from "../pages/Users";
+import Users from "../pages/Users"
+import Crud from "../pages/Crud"
 
 export default function Layout() {
   return (
@@ -19,6 +20,7 @@ export default function Layout() {
               <Route path="products" element={<Products />} />
               <Route path="orders" element={<Orders />} />
               <Route path="users" element={<Users />} />
+              <Route path="crud" element={<Crud />} />
               <Route
                 path="*"
                 element={<Navigate to="dashboard" replace />}

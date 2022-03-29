@@ -69,8 +69,8 @@ const Login = () => {
               authState: res.data.authState,
               // refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
               // refreshTokenExpireIn: res.data.refreshTokenExpireIn // Only if you are using refreshToken feature
-              refreshToken: '23mv86n790g4vm2706c2m38v6n790',
-              refreshTokenExpireIn: 60
+              // refreshToken: '23mv86n790g4vm2706c2m38v6n790',
+              // refreshTokenExpireIn: 60
             })) {
               // toast.success('Successfully!')
               navigate('/app')

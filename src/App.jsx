@@ -12,6 +12,13 @@ const refreshApi = createRefresh({
       newAuthTokenExpireIn: 10,
       newRefreshTokenExpiresIn: 60
     }
+  },
+  refreshApiErrorCallback: param => {
+    console.log(param)
+    return {
+      isSuccess: false,
+      error: 'error'
+    }
   }
 })
 
@@ -19,9 +26,9 @@ function App() {
   return (
     <AuthProvider
       authType={'localstorage'}
-      authName={'_auth'}
-      refresh={refreshApi}>
-      {/* cookieDomain={window.location.hostname}
+      authName={'_auth'}>
+      {/* refresh={refreshApi}
+      cookieDomain={window.location.hostname}
       cookieSecure={window.location.protocol === "https:"}> */}
       <RoutesComponent/>
     </AuthProvider>
