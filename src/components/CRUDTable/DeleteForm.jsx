@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 
-export const CreateForm = ({ children }) => {
+export const DeleteForm = ({ children }) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -15,9 +15,6 @@ export const CreateForm = ({ children }) => {
 
   return (
     <>
-      <div className="w-64 mb-4">
-        <Button onClick={openModal}>CREATE FORM</Button>
-      </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -57,18 +54,12 @@ export const CreateForm = ({ children }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Create Form
+                  Task Delete Process
                 </Dialog.Title>
-                <form>
-                  <div className="mt-2">
-                    <div className="w-full mt-4 grid grid-cols-1 gap-6">
-                      {children}
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <Button onClick={closeModal}>Create</Button>
-                  </div>
-                </form>
+                <p>
+                  Are you sure you want to delete the task?
+                </p>
+                <Button onClick={closeModal}>Delete</Button>
               </div>
             </Transition.Child>
           </div>

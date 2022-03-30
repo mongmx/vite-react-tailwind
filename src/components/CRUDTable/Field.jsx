@@ -17,7 +17,9 @@ export const TextField = ({ name, label, hidden }) => {
       {!hidden &&
         <label className="block">
           <span className="text-gray-700 uppercase">{label}</span>
-          <textarea name={name} className="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-blue-500" />
+          <textarea name={name} className="w-full mt-1 block rounded-md border-gray-300 shadow-sm focus:border-blue-500">
+            test
+          </textarea>
         </label>
       }
     </>

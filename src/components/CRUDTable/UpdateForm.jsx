@@ -1,23 +1,14 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 
-export const CreateForm = ({ children }) => {
-  let [isOpen, setIsOpen] = useState(false)
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
-
+export const UpdateForm = ({ children, selected, isOpen }) => {
+  useEffect(() => {
+    console.log(isOpen)
+  }, [isOpen]);
+  
   return (
     <>
-      <div className="w-64 mb-4">
-        <Button onClick={openModal}>CREATE FORM</Button>
-      </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
@@ -57,7 +48,7 @@ export const CreateForm = ({ children }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Create Form
+                  Update Form
                 </Dialog.Title>
                 <form>
                   <div className="mt-2">
@@ -66,7 +57,7 @@ export const CreateForm = ({ children }) => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <Button onClick={closeModal}>Create</Button>
+                    <Button onClick={closeModal}>Update</Button>
                   </div>
                 </form>
               </div>
