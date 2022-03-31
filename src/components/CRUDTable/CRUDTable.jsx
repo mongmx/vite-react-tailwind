@@ -1,6 +1,6 @@
 import React, { useState, Fragment } from "react";
-import { UpdateForm } from "react-crud-table";
 import { CreateForm } from "./CreateForm";
+import { UpdateForm } from "./UpdateForm";
 
 const CRUDTable = ({ children, items }) => {
   const [data, setData] = useState(React.Children.toArray(children));
