@@ -1,19 +1,15 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 
-export const UpdateForm = ({ children, selected, isOpen }) => {
-  useEffect(() => {
-    console.log(isOpen)
-  }, [isOpen]);
-  
+export const UpdateForm = ({ children, selected, isOpen, closeFn }) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={closeFn}
         >
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
           <div className="min-h-screen px-4 text-center">
@@ -57,7 +53,7 @@ export const UpdateForm = ({ children, selected, isOpen }) => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <Button onClick={closeModal}>Update</Button>
+                    <Button onClick={closeFn}>Update</Button>
                   </div>
                 </form>
               </div>
@@ -90,21 +86,6 @@ export const UpdateForm = ({ children, selected, isOpen }) => {
             errors.description = 'Please, provide task\'s description';
           }
 
-          return errors;
-        }}
-      />
-
-      <DeleteForm
-        title="Task Delete Process"
-        message="Are you sure you want to delete the task?"
-        trigger="Delete"
-        onSubmit={task => service.delete(task)}
-        submitText="Delete"
-        validate={(values) => {
-          const errors = {};
-          if (!values.id) {
-            errors.id = 'Please, provide id';
-          }
           return errors;
         }}
       /> */}

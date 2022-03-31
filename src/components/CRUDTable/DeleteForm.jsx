@@ -1,25 +1,15 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 
-export const DeleteForm = ({ children }) => {
-  let [isOpen, setIsOpen] = useState(false)
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
-
+export const DeleteForm = ({ selected, isOpen, closeFn }) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
           as="div"
           className="fixed inset-0 z-10 overflow-y-auto"
-          onClose={closeModal}
+          onClose={closeFn}
         >
           <Dialog.Overlay className="fixed inset-0 bg-black opacity-30" />
           <div className="min-h-screen px-4 text-center">
@@ -59,7 +49,7 @@ export const DeleteForm = ({ children }) => {
                 <p>
                   Are you sure you want to delete the task?
                 </p>
-                <Button onClick={closeModal}>Delete</Button>
+                <Button onClick={closeFn}>Delete</Button>
               </div>
             </Transition.Child>
           </div>
@@ -69,32 +59,7 @@ export const DeleteForm = ({ children }) => {
   );
 }
 
-{/* <UpdateForm
-        title="Task Update Process"
-        message="Update task"
-        trigger="Update"
-        onSubmit={task => service.update(task)}
-        submitText="Update"
-        validate={(values) => {
-          const errors = {};
-
-          if (!values.id) {
-            errors.id = 'Please, provide id';
-          }
-
-          if (!values.title) {
-            errors.title = 'Please, provide task\'s title';
-          }
-
-          if (!values.description) {
-            errors.description = 'Please, provide task\'s description';
-          }
-
-          return errors;
-        }}
-      />
-
-      <DeleteForm
+{/* <DeleteForm
         title="Task Delete Process"
         message="Are you sure you want to delete the task?"
         trigger="Delete"

@@ -1,36 +1,37 @@
 import React, { useState, Fragment } from "react";
 import { CreateForm } from "./CreateForm";
 import { UpdateForm } from "./UpdateForm";
+import { DeleteForm } from "./DeleteForm";
 
 const CRUDTable = ({ children, items }) => {
   const [data, setData] = useState(React.Children.toArray(children));
   const [selected, setSelected] = useState(null);
-  const [isOpen, setIsOpen] = useState(false);
+  const [updateFormOpen, setUpdateFormOpen] = useState(false);
+  const [deleteFormOpen, setDeleteFormOpen] = useState(false);
 
-  // function closeModal() {
-  //   setIsOpen(false)
-  // }
-
-  // function openModal() {
-  //   setIsOpen(true)
-  // }
-
-  const handleUpdate = (item) => {
+  const openUpdateForm = (item) => {
     setSelected(item);
-    setIsOpen(true);
-    console.log(isOpen);
+    setUpdateFormOpen(true);
   };
 
-  const handleDelete = (item) => {
+  const closeUpdateForm = () => {
+    setUpdateFormOpen(false)
+  };
+
+  const openDeleteForm = (item) => {
     setSelected(item);
-    setIsOpen(true);
-    console.log(isOpen);
+    setDeleteFormOpen(true);
+  };
+
+  const closeDeleteForm = () => {
+    setDeleteFormOpen(false)
   };
 
   return (
     <>
       <CreateForm children={children} />
-      <UpdateForm children={children} selected={selected} show={isOpen} />
+      <UpdateForm children={children} selected={selected} isOpen={updateFormOpen} closeFn={closeUpdateForm} />
+      <DeleteForm children={children} selected={selected} isOpen={deleteFormOpen} closeFn={closeDeleteForm} />
       <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
@@ -52,14 +53,13 @@ const CRUDTable = ({ children, items }) => {
                 </td>
               ))}
               <td className="px-6 text-right">
-                <UpdateButton onClick={() => handleUpdate(item)}>Update</UpdateButton>
-                <DeleteButton onClick={() => handleDelete(item)}>Delete</DeleteButton>
+                <UpdateButton onClick={() => openUpdateForm(item)}>Update</UpdateButton>
+                <DeleteButton onClick={() => openDeleteForm(item)}>Delete</DeleteButton>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      {/* {JSON.stringify(items)} */}
     </>
   );
 }
