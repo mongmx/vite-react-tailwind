@@ -3,6 +3,13 @@ import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 
 export const UpdateForm = ({ children, selected, isOpen, closeFn }) => {
+  const childrenWithProps = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child, { data: selected });
+    }
+    return child;
+  });
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -49,7 +56,7 @@ export const UpdateForm = ({ children, selected, isOpen, closeFn }) => {
                 <form>
                   <div className="mt-2">
                     <div className="w-full mt-4 grid grid-cols-1 gap-6">
-                      {children}
+                      {childrenWithProps}
                     </div>
                   </div>
                   <div className="mt-4">
