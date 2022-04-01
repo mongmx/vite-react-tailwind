@@ -1,5 +1,5 @@
 import { AuthProvider, createRefresh } from 'react-auth-kit'
-import RoutesComponent from './components/Routes'
+import RoutesComponent from './components/RoutesComp'
 import './App.css'
 
 const refreshApi = createRefresh({

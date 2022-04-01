@@ -27,8 +27,8 @@ const Products = () => {
             <option>Other</option>
           </select>
         </label>
-        <Button>Save</Button>
-        <Button disabled>Delete</Button>
+        <Button primary={+true} full={+true}>Save</Button>
+        <Button disabled={+true}>Delete</Button>
       </div>
     </>
   );

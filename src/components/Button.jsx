@@ -1,6 +1,4 @@
 const defaultClass = `
-  w-full 
-  flex 
   justify-center 
   py-2 
   px-4 
@@ -14,23 +12,20 @@ const defaultClass = `
   text-white
 `;
 
-const enbledClass = `
-  bg-blue-900 
-  hover:bg-blue-800 
-  active:bg-blue-700
-`;
-
-const disabledClass = `
-  cursor-not-allowed 
-  bg-gray-400
-`;
-
 const Button = ({ ...props }) => {
   return (
     <>
       <button
         {...props}
-        className={`${defaultClass} ${props.disabled ? disabledClass : enbledClass}`}
+        className={`
+          ${props.className} 
+          ${defaultClass} 
+          ${props.full ? 'w-full' : ''} 
+          ${props.primary ? 'bg-blue-900 hover:bg-blue-800 active:bg-blue-700' : ''} 
+          ${props.secondary ? 'bg-gray-500 hover:bg-gray-400 active:bg-gray-300' : ''} 
+          ${props.danger ? 'bg-red-900 hover:bg-red-800 active:bg-red-700' : ''} 
+          ${props.disabled ? 'cursor-not-allowed bg-gray-300' : ''}
+        `}
       >
         {props.children}
       </button>

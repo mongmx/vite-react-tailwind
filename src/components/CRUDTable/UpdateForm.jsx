@@ -1,15 +1,9 @@
 import React, { Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
+import { Field, TextField } from "./Field";
 
-export const UpdateForm = ({ children, selected, isOpen, closeFn }) => {
-  const childrenWithProps = React.Children.map(children, child => {
-    if (React.isValidElement(child)) {
-      return React.cloneElement(child, { data: selected });
-    }
-    return child;
-  });
-
+export const UpdateForm = ({ data, isOpen, closeFn, fields }) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -56,11 +50,18 @@ export const UpdateForm = ({ children, selected, isOpen, closeFn }) => {
                 <form>
                   <div className="mt-2">
                     <div className="w-full mt-4 grid grid-cols-1 gap-6">
-                      {childrenWithProps}
+                      {fields.map((field, i) => (
+                        field.fieldType === "text" ?
+                          <Field name={field.fieldName} label={field.fieldName} key={field.fieldName} data={data} /> :
+                          field.fieldType === "textarea" ?
+                            <TextField name={field.fieldName} label={field.fieldName} key={field.fieldName} data={data} /> :
+                            ''
+                      ))}
                     </div>
                   </div>
                   <div className="mt-4">
-                    <Button onClick={closeFn}>Update</Button>
+                    <Button onClick={closeFn} primary={+true} className="inline">Update</Button>
+                    <Button onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>
                   </div>
                 </form>
               </div>

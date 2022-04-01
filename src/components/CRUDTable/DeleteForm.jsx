@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 
-export const DeleteForm = ({ selected, isOpen, closeFn }) => {
+export const DeleteForm = ({ data, isOpen, closeFn }) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -44,12 +44,13 @@ export const DeleteForm = ({ selected, isOpen, closeFn }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Task Delete Process
+                  Delete Confirmation
                 </Dialog.Title>
                 <p>
-                  Are you sure you want to delete the task?
+                  Are you sure you want to delete the id {data ? data.id : ''} ?
                 </p>
-                <Button onClick={closeFn}>Delete</Button>
+                <Button onClick={closeFn} danger={+true} className="inline">Delete</Button>
+                <Button onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>
               </div>
             </Transition.Child>
           </div>

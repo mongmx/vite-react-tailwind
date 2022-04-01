@@ -1,40 +1,62 @@
+import React, { useMemo } from "react";
 import PageTitle from "../components/PageTitle";
 import CRUDTable from "../components/CRUDTable/CRUDTable";
-import { Field, TextField } from "../components/CRUDTable/Field";
 
-let tasks = [
-  {
-    id: 1,
-    title: 'Create an example',
-    description: 'Create an example of how to use the component',
-  },
-  {
-    id: 2,
-    title: 'Improve',
-    description: 'Improve the component!',
-  },
-];
+const CRUDTablePage = () => {
+  const data = useMemo(
+    () => [
+      {
+        id: 1,
+        name: 'Hello',
+        description: 'World',
+      },
+      {
+        id: 2,
+        name: 'react-table',
+        description: 'rocks',
+      },
+      {
+        id: 3,
+        name: 'whatever',
+        description: 'you want',
+      },
+    ],
+    []
+  )
 
-const Crud = () => {
+  const columns = useMemo(
+    () => [
+      {
+        Header: 'ID',
+        accessor: 'id', // accessor is the "key" in the data
+        sortType: 'basic',
+        fieldType: 'hidden',
+        fieldName: 'id',
+      },
+      {
+        Header: 'Name',
+        accessor: 'name', // accessor is the "key" in the data
+        sortType: 'basic',
+        fieldType: 'text',
+        fieldName: 'name',
+      },
+      {
+        Header: 'Description',
+        accessor: 'description',
+        sortType: 'basic',
+        fieldType: 'textarea',
+        fieldName: 'description',
+      },
+    ],
+    []
+  )
+
   return (
     <>
       <PageTitle>CRUD Table</PageTitle>
-
-      {/* <CRUDTable items={tasks}>
-        <Field name="1" label="id" hidden />
-        <Field name="2" label="name" />
-        <Field name="3" label="email" />
-        <TextField name="4" label="age" />
-        <Field name="5" label="created" hidden />
-      </CRUDTable> */}
-
-      <CRUDTable items={tasks}>
-        <Field name="id" label="id" hidden />
-        <Field name="title" label="title" />
-        <TextField name="description" label="description" />
-      </CRUDTable>
+      <CRUDTable columns={columns} data={data} />
     </>
   );
 }
 
-export default Crud;
+export default CRUDTablePage;

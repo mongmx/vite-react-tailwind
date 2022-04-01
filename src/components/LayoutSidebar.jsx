@@ -1,11 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom"
+import routes from '../Routes';
 import Sidebar from "./Sidebar"
 import Header from "./Header"
-import Dashboard from "../pages/Dashboard"
-import Products from "../pages/Products"
-import Orders from "../pages/Orders"
-import Users from "../pages/Users"
-import Crud from "../pages/Crud"
 
 export default function Layout() {
   return (
@@ -16,11 +12,9 @@ export default function Layout() {
         <div className="flex flex-col flex-grow p-4 bg-gray-100">
           <div className="flex flex-col flex-grow bg-white rounded p-4">
             <Routes>
-              <Route path="dashboard" element={<Dashboard />} />
-              <Route path="products" element={<Products />} />
-              <Route path="orders" element={<Orders />} />
-              <Route path="users" element={<Users />} />
-              <Route path="crud" element={<Crud />} />
+              {routes.map((route) => (
+                <Route path={route.path.replace("/app/","")} element={route.component} key={route.name} />
+              ))}
               <Route
                 path="*"
                 element={<Navigate to="dashboard" replace />}

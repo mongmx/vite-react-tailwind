@@ -8,7 +8,7 @@ import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import Orders from "./pages/Orders";
 import Users from "./pages/Users";
-import Crud from "./pages/Crud";
+import CRUDTablePage from "./pages/Crud";
 
 const routes = [
     {
@@ -39,7 +39,7 @@ const routes = [
         path: '/app/crud',
         icon: <CubeIcon className="w-6 h-6 mr-3" />,
         name: 'CRUD Table',
-        component: <Crud />,
+        component: <CRUDTablePage />,
     },
     // {
     //     path: '/app',
