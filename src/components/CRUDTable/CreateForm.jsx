@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 import { Field, TextField } from "./Field";
 
-export const CreateForm = ({ formName, fields, handleCreate }) => {
+export const CreateForm = ({ title, fields, handleCreate }) => {
   const [isOpen, setIsOpen] = useState(false)
   const [formData, setFormData] = useState({})
 
@@ -24,7 +24,7 @@ export const CreateForm = ({ formName, fields, handleCreate }) => {
   return (
     <>
       <div className="w-64 mb-4">
-        <Button onClick={openModal} primary={+true}>{ formName ? formName : 'Create Form'}</Button>
+        <Button onClick={openModal} primary={+true}>{title ? title : 'Create Form'}</Button>
       </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
@@ -65,7 +65,7 @@ export const CreateForm = ({ formName, fields, handleCreate }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  { formName ? formName : 'Create Form'}
+                  {title ? title : 'Create Form'}
                 </Dialog.Title>
                 <form onSubmit={(e) => { e.preventDefault(); handleCreate(formData); closeModal() }}>
                   <div className="mt-2">

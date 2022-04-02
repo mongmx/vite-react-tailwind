@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 
-export const DeleteForm = ({ formName, data, isOpen, closeFn, handleDelete }) => {
+export const DeleteForm = ({ title, data, isOpen, closeFn, handleDelete }) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -44,7 +44,7 @@ export const DeleteForm = ({ formName, data, isOpen, closeFn, handleDelete }) =>
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  {formName ? formName : 'Delete Confirmation'}
+                  {title ? title : 'Delete Confirmation'}
                 </Dialog.Title>
                 <p>
                   Are you sure you want to delete the id {data ? data.id : ''} ?

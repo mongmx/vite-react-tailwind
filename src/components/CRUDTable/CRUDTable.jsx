@@ -5,7 +5,7 @@ import { CreateForm } from "./CreateForm";
 import { UpdateForm } from "./UpdateForm";
 import { DeleteForm } from "./DeleteForm";
 
-const CRUDTable = ({ name, columns, data, handleCreate, handleUpdate, handleDelete }) => {
+const CRUDTable = ({ title, columns, data, handleCreate, handleUpdate, handleDelete }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -38,9 +38,9 @@ const CRUDTable = ({ name, columns, data, handleCreate, handleUpdate, handleDele
 
   return (
     <>
-      <CreateForm formName={`Create ${name}`} fields={columns} handleCreate={handleCreate} />
-      <UpdateForm formName={`Update ${name}`} data={selected} isOpen={updateFormOpen} closeFn={closeUpdateForm} fields={columns} handleUpdate={handleUpdate} />
-      <DeleteForm formName={`Delete ${name}`} data={selected} isOpen={deleteFormOpen} closeFn={closeDeleteForm} fields={columns} handleDelete={handleDelete} />
+      <CreateForm title={`Create ${title}`} fields={columns} handleCreate={handleCreate} />
+      <UpdateForm title={`Update ${title}`} data={selected} isOpen={updateFormOpen} closeFn={closeUpdateForm} fields={columns} handleUpdate={handleUpdate} />
+      <DeleteForm title={`Delete ${title}`} data={selected} isOpen={deleteFormOpen} closeFn={closeDeleteForm} fields={columns} handleDelete={handleDelete} />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table {...getTableProps()} className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">

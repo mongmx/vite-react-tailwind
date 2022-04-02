@@ -92,7 +92,7 @@ const CRUDTablePage = () => {
     <>
       <PageTitle>CRUD Table</PageTitle>
       <CRUDTable
-        name="Task"
+        title="Task"
         columns={columns}
         data={data}
         handleCreate={handleCreate}

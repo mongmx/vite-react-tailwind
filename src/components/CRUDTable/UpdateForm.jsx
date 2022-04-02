@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 import { Field, TextField } from "./Field";
 
-export const UpdateForm = ({ formName, data, isOpen, closeFn, fields, handleUpdate }) => {
+export const UpdateForm = ({ title, data, isOpen, closeFn, fields, handleUpdate }) => {
   const [formData, setFormData] = useState({})
 
   const handleChange = (event) => {
@@ -57,7 +57,7 @@ export const UpdateForm = ({ formName, data, isOpen, closeFn, fields, handleUpda
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  { formName ? formName : 'Update Form'}
+                  {title ? title : 'Update Form'}
                 </Dialog.Title>
                 <form onSubmit={(e) => { e.preventDefault(); handleUpdate(formData); closeFn() }}>
                   <div className="mt-2">
