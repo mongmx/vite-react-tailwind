@@ -73,7 +73,7 @@ export const UpdateForm = ({ formName, data, isOpen, closeFn, fields, handleUpda
                   </div>
                   <div className="mt-4">
                     <Button type="submit" primary={+true} className="inline">Update</Button>
-                    <Button onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>
+                    <Button type="button" onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>
                   </div>
                 </form>
               </div>

@@ -49,8 +49,8 @@ export const DeleteForm = ({ formName, data, isOpen, closeFn, handleDelete }) =>
                 <p>
                   Are you sure you want to delete the id {data ? data.id : ''} ?
                 </p>
-                <Button onClick={() => { handleDelete(data.id); closeFn() }} danger={+true} className="inline">Delete</Button>
-                <Button onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>
+                <Button type="button" onClick={() => { handleDelete(data.id); closeFn() }} danger={+true} className="inline">Delete</Button>
+                <Button type="button" onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>
               </div>
             </Transition.Child>
           </div>

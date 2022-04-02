@@ -81,7 +81,7 @@ export const CreateForm = ({ formName, fields, handleCreate }) => {
                   </div>
                   <div className="mt-4">
                     <Button type="submit" primary={+true} className="inline">Create</Button>
-                    <Button onClick={closeModal} secondary={+true} className="inline ml-1">Cancel</Button>
+                    <Button type="button" onClick={closeModal} secondary={+true} className="inline ml-1">Cancel</Button>
                   </div>
                 </form>
               </div>
