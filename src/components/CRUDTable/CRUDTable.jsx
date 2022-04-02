@@ -5,7 +5,7 @@ import { CreateForm } from "./CreateForm";
 import { UpdateForm } from "./UpdateForm";
 import { DeleteForm } from "./DeleteForm";
 
-const CRUDTable = ({columns, data}) => {
+const CRUDTable = ({columns, data, handleCreate, handleUpdate, handleDelete}) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -38,7 +38,7 @@ const CRUDTable = ({columns, data}) => {
 
   return (
     <>
-      <CreateForm fields={columns} />
+      <CreateForm fields={columns} handleCreate={handleCreate} />
       <UpdateForm data={selected} isOpen={updateFormOpen} closeFn={closeUpdateForm} fields={columns} />
       <DeleteForm data={selected} isOpen={deleteFormOpen} closeFn={closeDeleteForm} fields={columns} />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

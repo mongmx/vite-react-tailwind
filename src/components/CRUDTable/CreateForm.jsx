@@ -3,7 +3,7 @@ import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 import { Field, TextField } from "./Field";
 
-export const CreateForm = ({ fields }) => {
+export const CreateForm = ({ fields, handleCreate }) => {
   let [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -12,6 +12,13 @@ export const CreateForm = ({ fields }) => {
 
   function openModal() {
     setIsOpen(true)
+  }
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    // setInputs(values => ({...values, [name]: value}))
+    console.log(name, value)
   }
 
   return (
@@ -60,20 +67,20 @@ export const CreateForm = ({ fields }) => {
                 >
                   Create Form
                 </Dialog.Title>
-                <form>
+                <form onSubmit={handleCreate}>
                   <div className="mt-2">
                     <div className="w-full mt-4 grid grid-cols-1 gap-6">
                       {fields.map((field, i) => (
                         field.fieldType === "text" ?
-                          <Field name={field.fieldName} label={field.fieldName} key={field.fieldName} /> :
+                          <Field name={field.fieldName} label={field.fieldName} key={field.fieldName} handleChange={handleChange} /> :
                           field.fieldType === "textarea" ?
-                            <TextField name={field.fieldName} label={field.fieldName} key={field.fieldName} /> :
+                            <TextField name={field.fieldName} label={field.fieldName} key={field.fieldName} handleChange={handleChange} /> :
                             ''
                       ))}
                     </div>
                   </div>
                   <div className="mt-4">
-                    <Button onClick={closeModal} primary={+true} className="inline">Create</Button>
+                    <Button type="submit" primary={+true} className="inline">Create</Button>
                     <Button onClick={closeModal} secondary={+true} className="inline ml-1">Cancel</Button>
                   </div>
                 </form>
