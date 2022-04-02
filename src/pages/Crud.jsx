@@ -10,13 +10,23 @@ const CRUDTablePage = () => {
     axios.get('http://localhost:8080/tasks')
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data)
           setData(res.data)
         } else {
           alert("Error Occoured. Try Again")
         }
       })
   }, [])
+
+  const fetchData = () => {
+    axios.get('http://localhost:8080/tasks')
+      .then((res) => {
+        if (res.status === 200) {
+          setData(res.data)
+        } else {
+          alert("Error Occoured. Try Again")
+        }
+      })
+  }
 
   const handleDelete = (id) => {
     axios.delete(`http://localhost:8080/tasks/${id}`)
@@ -42,22 +52,15 @@ const CRUDTablePage = () => {
       })
   }
 
-  const handleCreate = (event) => {
-    event.preventDefault();
-    console.log(event.target)
-    console.log(event.target[0].value)
-    const name = event.target.name;
-    const value = event.target.value;
-    // alert(`The name you entered was: ${name}`)
-    // axios.post(`http://localhost:8080/tasks`, data)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       console.log(res.data)
-    //       setData(res.data)
-    //     } else {
-    //       alert("Error Occoured. Try Again")
-    //     }
-    //   })
+  const handleCreate = (formData) => {
+    axios.post(`http://localhost:8080/tasks`, formData)
+      .then((res) => {
+        if (res.status === 201) {
+          fetchData()
+        } else {
+          alert("Error Occoured. Try Again")
+        }
+      })
   }
 
   const columns = useMemo(

@@ -4,7 +4,8 @@ import Button from "../Button";
 import { Field, TextField } from "./Field";
 
 export const CreateForm = ({ fields, handleCreate }) => {
-  let [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const [formData, setFormData] = useState({})
 
   function closeModal() {
     setIsOpen(false)
@@ -17,8 +18,7 @@ export const CreateForm = ({ fields, handleCreate }) => {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    // setInputs(values => ({...values, [name]: value}))
-    console.log(name, value)
+    setFormData(values => ({ ...values, [name]: value }))
   }
 
   return (
@@ -67,7 +67,7 @@ export const CreateForm = ({ fields, handleCreate }) => {
                 >
                   Create Form
                 </Dialog.Title>
-                <form onSubmit={handleCreate}>
+                <form onSubmit={(e) => { e.preventDefault(); handleCreate(formData); closeModal() }}>
                   <div className="mt-2">
                     <div className="w-full mt-4 grid grid-cols-1 gap-6">
                       {fields.map((field, i) => (
