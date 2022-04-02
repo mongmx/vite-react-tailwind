@@ -1,9 +1,21 @@
-import React, { Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 import { Field, TextField } from "./Field";
 
-export const UpdateForm = ({ data, isOpen, closeFn, fields }) => {
+export const UpdateForm = ({ formName, data, isOpen, closeFn, fields, handleUpdate }) => {
+  const [formData, setFormData] = useState({})
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setFormData(values => ({ ...values, [name]: value }))
+  }
+
+  useEffect(() => {
+    setFormData(data)
+  }, [data])
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -45,22 +57,22 @@ export const UpdateForm = ({ data, isOpen, closeFn, fields }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Update Form
+                  { formName ? formName : 'Update Form'}
                 </Dialog.Title>
-                <form>
+                <form onSubmit={(e) => { e.preventDefault(); handleUpdate(formData); closeFn() }}>
                   <div className="mt-2">
                     <div className="w-full mt-4 grid grid-cols-1 gap-6">
                       {fields.map((field, i) => (
                         field.fieldType === "text" ?
-                          <Field name={field.fieldName} label={field.fieldName} key={field.fieldName} data={data} /> :
+                          <Field name={field.fieldName} label={field.fieldName} key={field.fieldName} data={data} handleChange={handleChange} /> :
                           field.fieldType === "textarea" ?
-                            <TextField name={field.fieldName} label={field.fieldName} key={field.fieldName} data={data} /> :
+                            <TextField name={field.fieldName} label={field.fieldName} key={field.fieldName} data={data} handleChange={handleChange} /> :
                             ''
                       ))}
                     </div>
                   </div>
                   <div className="mt-4">
-                    <Button onClick={closeFn} primary={+true} className="inline">Update</Button>
+                    <Button type="submit" primary={+true} className="inline">Update</Button>
                     <Button onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>
                   </div>
                 </form>
