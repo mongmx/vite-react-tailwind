@@ -44,10 +44,10 @@ export const DeleteForm = ({ title, data, isOpen, closeFn, handleDelete }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  {title ? title : 'Delete Confirmation'}
+                  {title ? 'Delete ' + title : 'Delete Confirmation'}
                 </Dialog.Title>
                 <p>
-                  Are you sure you want to delete the id {data ? data.id : ''} ?
+                  Are you sure you want to delete the {title ? title : ''} id {data ? data.id : ''} ?
                 </p>
                 <Button type="button" onClick={() => { handleDelete(data.id); closeFn() }} danger={+true} className="inline">Delete</Button>
                 <Button type="button" onClick={closeFn} secondary={+true} className="inline ml-1">Cancel</Button>

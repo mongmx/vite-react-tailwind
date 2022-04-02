@@ -57,7 +57,7 @@ export const UpdateForm = ({ title, data, isOpen, closeFn, fields, handleUpdate 
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  {title ? title : 'Update Form'}
+                  {title ? 'Update ' + title : 'Update Form'}
                 </Dialog.Title>
                 <form onSubmit={(e) => { e.preventDefault(); handleUpdate(formData); closeFn() }}>
                   <div className="mt-2">

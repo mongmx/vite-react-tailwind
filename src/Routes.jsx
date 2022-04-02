@@ -2,7 +2,8 @@ import {
     HomeIcon,
     CubeIcon,
     ClipboardListIcon,
-    UserGroupIcon
+    UserGroupIcon,
+    TableIcon
 } from "@heroicons/react/outline";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
@@ -37,7 +38,7 @@ const routes = [
     },
     {
         path: '/app/crud',
-        icon: <CubeIcon className="w-6 h-6 mr-3" />,
+        icon: <TableIcon className="w-6 h-6 mr-3" />,
         name: 'CRUD Table',
         component: <CRUDTablePage />,
     },

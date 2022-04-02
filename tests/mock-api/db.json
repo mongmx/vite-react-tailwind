@@ -1,6 +1,6 @@
 {
   "current-user": {
-    "id": "1",
+    "id": 1,
     "name": "The Tester",
     "email": "test@test.com",
     "role": "developer"
@@ -17,7 +17,7 @@
   },
   "products": [
     {
-      "id": "1",
+      "id": 1,
       "title": "Product 1",
       "description": "Description 1",
       "price": "100",
@@ -27,7 +27,7 @@
       "updated_at": "2016-01-01 00:00:00"
     },
     {
-      "id": "2",
+      "id": 2,
       "title": "Product 2",
       "description": "Description 2",
       "price": "200",
@@ -39,7 +39,7 @@
   ],
   "categories": [
     {
-      "id": "1",
+      "id": 1,
       "title": "Category 1",
       "description": "Description 1",
       "image": "http://placehold.it/100x100",
@@ -47,7 +47,7 @@
       "updated_at": "2016-01-01 00:00:00"
     },
     {
-      "id": "2",
+      "id": 2,
       "title": "Category 2",
       "description": "Description 2",
       "image": "http://placehold.it/100x100",
@@ -57,7 +57,7 @@
   ],
   "campaigns": [
     {
-      "id": "1",
+      "id": 1,
       "title": "Campaign 1",
       "description": "Description 1",
       "image": "http://placehold.it/100x100",
@@ -65,7 +65,7 @@
       "updated_at": "2016-01-01 00:00:00"
     },
     {
-      "id": "2",
+      "id": 2,
       "title": "Campaign 2",
       "description": "Description 2",
       "image": "http://placehold.it/100x100",
@@ -75,13 +75,13 @@
   ],
   "histories": [
     {
-      "id": "1",
+      "id": 1,
       "user_id": "1001",
       "user_name": "The Tester",
       "login_time": "2022-01-01 10:35:41"
     },
     {
-      "id": "2",
+      "id": 2,
       "user_id": "2002",
       "user_name": "The Owner",
       "login_time": "2022-01-01 10:35:43"
@@ -102,6 +102,20 @@
       "name": "Test Test",
       "description": "Test Test",
       "id": 3
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "The Tester",
+      "email": "test@test.com",
+      "role": "developer"
+    },
+    {
+      "id": 2,
+      "name": "The Owner",
+      "email": "owner@test.com",
+      "role": "owner"
     }
   ]
 }
