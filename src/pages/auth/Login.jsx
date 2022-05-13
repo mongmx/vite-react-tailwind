@@ -6,6 +6,7 @@ import * as Yup from 'yup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner';
+import { apiClient, apiPath } from '../../api/client';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -62,7 +63,7 @@ const Login = () => {
   const onSubmit = async (formData) => {
     setIsSigningIn(true);
     try {
-      axios.post('http://localhost:8080/api/auth/signin', formData)
+      apiClient.post(apiPath.signin, formData)
         .then((res) => {
           if (res.status === 200) {
             if (signIn({

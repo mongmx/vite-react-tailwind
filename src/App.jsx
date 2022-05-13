@@ -1,7 +1,6 @@
 import { AuthProvider, createRefresh } from 'react-auth-kit'
 import { ToastContainer } from 'react-toastify';
 import RoutesComponent from './components/RoutesComp'
-import './App.css'
 import 'react-toastify/dist/ReactToastify.css';
 
 const refreshApi = createRefresh({

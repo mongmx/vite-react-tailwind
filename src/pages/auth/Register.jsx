@@ -3,9 +3,9 @@ import { useIsAuthenticated, useSignIn } from 'react-auth-kit'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import axios from 'axios';
 import { toast } from 'react-toastify';
 import Spinner from '../../components/Spinner';
+import { apiClient, apiPath } from '../../api/client';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -27,7 +27,7 @@ function Register() {
   const onSubmit = async (formData) => {
     setIsSignUpgIn(true);
     try {
-      axios.post('http://localhost:8080/api/auth/signup', formData)
+      apiClient.post(apiPath.signup, formData)
         .then((res) => {
           if (res.status === 201) {
             if (signIn({

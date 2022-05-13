@@ -1,5 +1,5 @@
 import { Link, NavLink } from "react-router-dom";
-import routes from '../Routes';
+import pageRoutes from '../pages/routes';
 
 const ActiveLink = props => {
   return (
@@ -24,7 +24,7 @@ const Sidebar = () => {
       </div>
       <div>
         <ul className="flex flex-col w-full">
-          {routes.map((route) => (
+          {pageRoutes.map((route) => (
             <li className="my-px" key={route.path}>
               <ActiveLink to={route.path}>
                 {route.icon}

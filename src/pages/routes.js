@@ -5,13 +5,13 @@ import {
     UserGroupIcon,
     TableIcon
 } from "@heroicons/react/outline";
-import Dashboard from "./pages/Dashboard";
-import Products from "./pages/Products";
-import Orders from "./pages/Orders";
-import Users from "./pages/Users";
-import CRUDTablePage from "./pages/Crud";
+import Dashboard from "./Dashboard";
+import Products from "./Products";
+import Orders from "./Orders";
+import Users from "./Users";
+import CRUDTablePage from "./Crud";
 
-const routes = [
+const pageRoutes = [
     {
         path: '/app/dashboard',
         icon: <HomeIcon className="w-6 h-6 mr-3" />,
@@ -74,4 +74,4 @@ const routes = [
     // },
 ];
 
-export default routes;
+export default pageRoutes;

@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from "react-router-dom"
-import routes from '../Routes';
+import pageRoutes from '../pages/routes';
 import Sidebar from "./Sidebar"
 import Header from "./Header"
 
@@ -12,7 +12,7 @@ export default function Layout() {
         <div className="flex flex-col flex-grow p-4 bg-gray-100">
           <div className="flex flex-col flex-grow bg-white rounded p-4">
             <Routes>
-              {routes.map((route) => (
+              {pageRoutes.map((route) => (
                 <Route path={route.path.replace("/app/","")} element={route.component} key={route.name} />
               ))}
               <Route
