@@ -21,9 +21,9 @@ const Button = ({ ...props }) => {
           ${props.className} 
           ${defaultClass} 
           ${props.full ? 'w-full' : ''} 
-          ${props.primary ? 'bg-blue-900 hover:bg-blue-800 active:bg-blue-700' : ''} 
-          ${props.secondary ? 'bg-gray-500 hover:bg-gray-400 active:bg-gray-300' : ''} 
-          ${props.danger ? 'bg-red-900 hover:bg-red-800 active:bg-red-700' : ''} 
+          ${props.type == 'primary' ? 'bg-blue-900 hover:bg-blue-800 active:bg-blue-700' : ''} 
+          ${props.type == 'secondary' ? 'bg-gray-500 hover:bg-gray-400 active:bg-gray-300' : ''} 
+          ${props.type == 'danger' ? 'bg-red-900 hover:bg-red-800 active:bg-red-700' : ''} 
           ${props.disabled ? 'cursor-not-allowed bg-gray-300' : ''}
         `}
       >

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useIsAuthenticated, useSignIn } from 'react-auth-kit'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -59,7 +60,7 @@ const Login = () => {
   const onSubmit = async (formData) => {
     // setIsSigningIn(true);
     try {
-      axios.get('http://localhost:8080/api/auth/signin', formData)
+      axios.post('http://localhost:8080/api/auth/signin', formData)
         .then((res) => {
           if (res.status === 200) {
             if (signIn({
@@ -72,18 +73,20 @@ const Login = () => {
               // refreshToken: '23mv86n790g4vm2706c2m38v6n790',
               // refreshTokenExpireIn: 60
             })) {
-              // toast.success('Successfully!')
+              toast.success('Successfully!')
               navigate('/app')
             } else {
-              alert("Error Occoured. Try Again")
+              toast.error("Error Occoured. Try Again")
             }
           }
+        })
+        .catch((err) => {
+          toast.error(err.response.data.message);
         })
 
     } catch (err) {
       // err.response.data.errors.forEach((err) => toast.error(err.message));
-      // toast.error(err.response.data.message);
-      alert(err, "Error Occoured. Try Again")
+      toast.error(err.response.data.message)
     }
     // setIsSigningIn(false);
   };

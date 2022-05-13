@@ -1,6 +1,8 @@
 import { AuthProvider, createRefresh } from 'react-auth-kit'
+import { ToastContainer } from 'react-toastify';
 import RoutesComponent from './components/RoutesComp'
 import './App.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 const refreshApi = createRefresh({
   interval: 1,
@@ -30,7 +32,14 @@ function App() {
       {/* refresh={refreshApi}
       cookieDomain={window.location.hostname}
       cookieSecure={window.location.protocol === "https:"}> */}
-      <RoutesComponent/>
+      <ToastContainer
+        theme='colored'
+        position='top-center'
+        autoClose='5000'
+        closeOnClick='true'
+        pauseOnHover='true'
+      />
+      <RoutesComponent />
     </AuthProvider>
   )
 }
