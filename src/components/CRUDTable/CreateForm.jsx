@@ -3,8 +3,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import Button from "../Button";
 import { Field, TextField } from "./Field";
 
-export const CreateForm = ({ fields, handleCreate }) => {
-  let [isOpen, setIsOpen] = useState(false)
+export const CreateForm = ({ title, fields, handleCreate }) => {
+  const [isOpen, setIsOpen] = useState(false)
+  const [formData, setFormData] = useState({})
 
   function closeModal() {
     setIsOpen(false)
@@ -17,14 +18,13 @@ export const CreateForm = ({ fields, handleCreate }) => {
   const handleChange = (event) => {
     const name = event.target.name;
     const value = event.target.value;
-    // setInputs(values => ({...values, [name]: value}))
-    console.log(name, value)
+    setFormData(values => ({ ...values, [name]: value }))
   }
 
   return (
     <>
       <div className="w-64 mb-4">
-        <Button onClick={openModal} primary={+true}>CREATE FORM</Button>
+        <Button onClick={openModal} primary={+true}>{title ? 'Create ' + title : 'Create Form'}</Button>
       </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
@@ -65,9 +65,9 @@ export const CreateForm = ({ fields, handleCreate }) => {
                   as="h3"
                   className="text-lg font-medium leading-6 text-gray-900"
                 >
-                  Create Form
+                  {title ? 'Create ' + title : 'Create Form'}
                 </Dialog.Title>
-                <form onSubmit={handleCreate}>
+                <form onSubmit={(e) => { e.preventDefault(); handleCreate(formData); closeModal() }}>
                   <div className="mt-2">
                     <div className="w-full mt-4 grid grid-cols-1 gap-6">
                       {fields.map((field, i) => (
@@ -81,7 +81,7 @@ export const CreateForm = ({ fields, handleCreate }) => {
                   </div>
                   <div className="mt-4">
                     <Button type="submit" primary={+true} className="inline">Create</Button>
-                    <Button onClick={closeModal} secondary={+true} className="inline ml-1">Cancel</Button>
+                    <Button type="button" onClick={closeModal} secondary={+true} className="inline ml-1">Cancel</Button>
                   </div>
                 </form>
               </div>
@@ -92,43 +92,3 @@ export const CreateForm = ({ fields, handleCreate }) => {
     </>
   );
 }
-
-{/* <UpdateForm
-        title="Task Update Process"
-        message="Update task"
-        trigger="Update"
-        onSubmit={task => service.update(task)}
-        submitText="Update"
-        validate={(values) => {
-          const errors = {};
-
-          if (!values.id) {
-            errors.id = 'Please, provide id';
-          }
-
-          if (!values.title) {
-            errors.title = 'Please, provide task\'s title';
-          }
-
-          if (!values.description) {
-            errors.description = 'Please, provide task\'s description';
-          }
-
-          return errors;
-        }}
-      />
-
-      <DeleteForm
-        title="Task Delete Process"
-        message="Are you sure you want to delete the task?"
-        trigger="Delete"
-        onSubmit={task => service.delete(task)}
-        submitText="Delete"
-        validate={(values) => {
-          const errors = {};
-          if (!values.id) {
-            errors.id = 'Please, provide id';
-          }
-          return errors;
-        }}
-      /> */}
