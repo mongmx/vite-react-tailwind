@@ -5,6 +5,7 @@ import { ErrorMessage, Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import Spinner from '../../components/Spinner';
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -18,6 +19,7 @@ const Login = () => {
   const isAuthenticated = useIsAuthenticated()
   const signIn = useSignIn()
   const navigate = useNavigate()
+  const [isSigningIn, setIsSigningIn] = useState(true)
 
   /**
    * Login Handle, the callback function onClick from the "Login" button
@@ -58,7 +60,7 @@ const Login = () => {
   }
 
   const onSubmit = async (formData) => {
-    // setIsSigningIn(true);
+    setIsSigningIn(true);
     try {
       axios.post('http://localhost:8080/api/auth/signin', formData)
         .then((res) => {
@@ -88,7 +90,7 @@ const Login = () => {
       // err.response.data.errors.forEach((err) => toast.error(err.message));
       toast.error(err.response.data.message)
     }
-    // setIsSigningIn(false);
+    setIsSigningIn(false);
   };
 
   // console.log(isAuthenticated())
@@ -148,7 +150,7 @@ const Login = () => {
                         rounded-md shadow-sm text-sm font-medium text-white bg-blue-900 hover:bg-blue-800
                         focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                     >
-                      Login
+                      {isSigningIn ? <Spinner animation="border" variant="primary" /> : 'Login'}
                     </button>
                   </Form>
                 </Formik>
