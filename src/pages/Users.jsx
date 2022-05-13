@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import PageTitle from "../components/PageTitle";
 import CRUDTable from "../components/CRUDTable/CRUDTable";
 import axios from "axios";
@@ -38,7 +38,7 @@ const Users = () => {
     []
   )
 
-  const [data, setData] = React.useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     axios.get('http://localhost:8080/users')

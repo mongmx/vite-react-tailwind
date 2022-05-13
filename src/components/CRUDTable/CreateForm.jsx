@@ -24,7 +24,7 @@ export const CreateForm = ({ title, fields, handleCreate }) => {
   return (
     <>
       <div className="w-64 mb-4">
-        <Button onClick={openModal} primary={+true}>{title ? 'Create ' + title : 'Create Form'}</Button>
+        <Button onClick={openModal} variant="primary">{title ? 'Create ' + title : 'Create Form'}</Button>
       </div>
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog
@@ -80,8 +80,8 @@ export const CreateForm = ({ title, fields, handleCreate }) => {
                     </div>
                   </div>
                   <div className="mt-4">
-                    <Button type="submit" primary={+true} className="inline">Create</Button>
-                    <Button type="button" onClick={closeModal} secondary={+true} className="inline ml-1">Cancel</Button>
+                    <Button type="submit" variant="primary" className="inline">Create</Button>
+                    <Button type="button" onClick={closeModal} variant="secondary" className="inline ml-1">Cancel</Button>
                   </div>
                 </form>
               </div>
