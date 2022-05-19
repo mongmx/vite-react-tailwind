@@ -3,6 +3,7 @@ import PageTitle from "../components/PageTitle";
 import axios from "axios";
 import { useTable, useSortBy } from 'react-table';
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
+import {useAuthHeader} from 'react-auth-kit';
 
 function History() {
   const columns = useMemo(
@@ -26,9 +27,16 @@ function History() {
   )
 
   const [data, setData] = useState([]);
+  const authHeader = useAuthHeader();
 
   useEffect(() => {
-    axios.get('http://localhost:8080/api/auth/get-history')
+    axios.get('http://localhost:8080/api/auth/get-history',
+      {
+        headers: {
+          'Authorization': authHeader()
+        }
+      }
+    )
       .then((res) => {
         if (res.status === 200) {
           setData(res.data)
@@ -46,9 +54,12 @@ function History() {
     prepareRow,
   } = useTable({ columns, data }, useSortBy)
 
+  console.log(authHeader())
+
   return (
     <>
       <PageTitle>Access logs</PageTitle>
+      {/* {authHeader()} */}
       <div className="overflow-x-auto shadow-md sm:rounded-lg mt-8">
         <table {...getTableProps()} className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-200 dark:bg-gray-700 dark:text-gray-400">
