@@ -5,38 +5,25 @@ import 'react-toastify/dist/ReactToastify.css';
 import { apiClient, apiPath } from './api/client';
 
 const refreshApi = createRefresh({
-  interval: 1,
-  refreshApiCallback: param => {
-    console.log(param)
-    // return new Promise((resolve, reject) => {
-    //   resolve({
-    //     isSuccess: true,
-    //     newAuthToken: 'fsdgedgd',
-    //     newAuthTokenExpireIn: 1,
-    //     newRefreshTokenExpiresIn: 2
-    //   })
-    // })
-    apiClient.post(apiPath.refreshToken,
-      {
-        refreshToken: "refreshToken",
-        oldAuthToken: "authToken"
-      }
-    ).then((res) => {
-      return {
-        // As the request is successful, we are passing new tokens.
-        isSuccess: true,  // For successful network request isSuccess is true
-        // newAuthToken: data.newAuthToken,
-        // newAuthTokenExpireIn: data.newAuthTokenExpireIn
-        newAuthToken: res.data.token,
-        newAuthTokenExpireIn: 1,
-        // You can also add new refresh token ad new user state
-        newAuthUserState: res.data.authState
-      }
-    }).catch((e) => {
-      console.error(e)
-      return {
-        isSuccess: false
-      }
+  interval: 5,
+  refreshApiCallback: ({ authToken, refreshToken }) => {
+    return new Promise((resolve, reject) => {
+      apiClient.post(apiPath.refreshToken,
+        { refreshToken, oldAuthToken: authToken }
+      ).then((res) => {
+        resolve({
+          isSuccess: true,
+          newAuthToken: res.data.token,
+          newAuthTokenExpireIn: res.data.expiresIn,
+          newRefreshToken: res.data.refreshToken,
+          newRefreshTokenExpiresIn: res.data.refreshTokenExpiresIn,
+          newAuthUserState: res.data.authState
+        })
+      }).catch((e) => {
+        reject({
+          isSuccess: false
+        })
+      })
     })
   }
 })

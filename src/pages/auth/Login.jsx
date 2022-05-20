@@ -66,16 +66,14 @@ const Login = () => {
       apiClient.post(apiPath.signin, formData)
         .then((res) => {
           if (res.status === 200) {
+            console.log(res.data)
             if (signIn({
               token: res.data.token,
-              // expiresIn: res.data.expiresIn,
-              expiresIn: 1,
+              expiresIn: res.data.expiresIn,
               tokenType: 'Bearer',
               authState: res.data.authState,
-              // refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
-              // refreshTokenExpireIn: res.data.refreshTokenExpireIn // Only if you are using refreshToken feature
-              refreshToken: '23mv86n790g4vm2706c2m38v6n790',
-              refreshTokenExpireIn: 2
+              refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
+              refreshTokenExpireIn: res.data.refreshTokenExpiresIn // Only if you are using refreshToken feature
             })) {
               apiClient.interceptors.request.use(config => {
                 config.headers.Authorization = `Bearer ${res.data.token}`;

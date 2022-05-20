@@ -35,8 +35,8 @@ function Register() {
               expiresIn: res.data.expiresIn,
               tokenType: 'Bearer',
               authState: res.data.authState,
-              // refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
-              // refreshTokenExpireIn: res.data.refreshTokenExpireIn // Only if you are using refreshToken feature
+              refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
+              refreshTokenExpireIn: res.data.refreshTokenExpiresIn // Only if you are using refreshToken feature
             })) {
               toast.success('Successfully!')
               navigate('/app')
