@@ -68,14 +68,19 @@ const Login = () => {
           if (res.status === 200) {
             if (signIn({
               token: res.data.token,
-              expiresIn: res.data.expiresIn,
+              // expiresIn: res.data.expiresIn,
+              expiresIn: 1,
               tokenType: 'Bearer',
               authState: res.data.authState,
               // refreshToken: res.data.refreshToken,                // Only if you are using refreshToken feature
               // refreshTokenExpireIn: res.data.refreshTokenExpireIn // Only if you are using refreshToken feature
-              // refreshToken: '23mv86n790g4vm2706c2m38v6n790',
-              // refreshTokenExpireIn: 60
+              refreshToken: '23mv86n790g4vm2706c2m38v6n790',
+              refreshTokenExpireIn: 2
             })) {
+              apiClient.interceptors.request.use(config => {
+                config.headers.Authorization = `Bearer ${res.data.token}`;
+                return config;
+              });
               toast.success('Successfully!')
               navigate('/app')
             } else {
@@ -84,9 +89,8 @@ const Login = () => {
           }
         })
         .catch((err) => {
-          toast.error(err.response.data.message);
+          throw err
         })
-
     } catch (err) {
       // err.response.data.errors.forEach((err) => toast.error(err.message));
       toast.error(err.response.data.message)
