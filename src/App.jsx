@@ -11,6 +11,10 @@ const refreshApi = createRefresh({
       apiClient.post(apiPath.refreshToken,
         { refreshToken, oldAuthToken: authToken }
       ).then((res) => {
+        apiClient.interceptors.request.use(config => {
+          config.headers.Authorization = `Bearer ${res.data.token}`;
+          return config;
+        });
         resolve({
           isSuccess: true,
           newAuthToken: res.data.token,
