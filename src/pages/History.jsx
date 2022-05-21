@@ -4,6 +4,7 @@ import { useTable, useSortBy } from 'react-table';
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/outline";
 import { toast } from 'react-toastify';
 import { apiClient, apiPath } from '../api/client';
+import { useAuthHeader } from 'react-auth-kit'
 
 function History() {
   const columns = useMemo(
@@ -27,9 +28,10 @@ function History() {
   )
 
   const [data, setData] = useState([]);
+  const authHeader = useAuthHeader();
 
   useEffect(() => {
-    apiClient.get(apiPath.getHistory)
+    apiClient.get(apiPath.getHistory, { headers: { Authorization: authHeader() } })
       .then((res) => {
         if (res.status === 200) {
           setData(res.data)

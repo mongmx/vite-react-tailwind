@@ -1,7 +1,9 @@
 import { createContext, useRef, useEffect } from 'react';
 import axios from 'axios';
 
-export const AxiosContext = createContext(null);
+export const AxiosContext = createContext({
+  setAuthHeader: () => { }
+});
 export const AxiosInstanceProvider = ({
   config = {},
   requestInterceptors = [],
@@ -21,6 +23,9 @@ export const AxiosInstanceProvider = ({
       );
     });
   }, []);
+  const setAuthHeader = (token) => {
+    instanceRef.current.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+  }
   return (
     <AxiosContext.Provider value={instanceRef.current}>
       {children}
