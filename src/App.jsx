@@ -3,6 +3,7 @@ import { ToastContainer } from 'react-toastify';
 import RoutesComponent from './components/RoutesComp'
 import 'react-toastify/dist/ReactToastify.css';
 import { apiClient, apiPath } from './api/client';
+import { AxiosInstanceProvider } from './contexts/AxiosContext';
 
 const refreshApi = createRefresh({
   interval: 5,
@@ -30,21 +31,25 @@ const refreshApi = createRefresh({
 
 function App() {
   return (
-    <AuthProvider
-      authType={'localstorage'}
-      authName={'_auth'}
-      refresh={refreshApi}>
-      {/* cookieDomain={window.location.hostname}
-      cookieSecure={window.location.protocol === "https:"}> */}
-      <ToastContainer
-        theme='colored'
-        position='top-center'
-        autoClose='5000'
-        closeOnClick='true'
-        pauseOnHover='true'
-      />
-      <RoutesComponent />
-    </AuthProvider>
+    <AxiosInstanceProvider
+      config={{ baseURL: 'http://localhost:8080/api' }}
+    >
+      <AuthProvider
+        authType={'localstorage'}
+        authName={'_auth'}
+        refresh={refreshApi}>
+        {/* cookieDomain={window.location.hostname}
+        cookieSecure={window.location.protocol === "https:"}> */}
+        <ToastContainer
+          theme='colored'
+          position='top-center'
+          autoClose='5000'
+          closeOnClick='true'
+          pauseOnHover='true'
+        />
+        <RoutesComponent />
+      </AuthProvider>
+    </AxiosInstanceProvider>
   )
 }
 
