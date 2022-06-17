@@ -119,7 +119,7 @@ const Login = () => {
                 </h1>
                 <Formik
                   initialValues={{
-                    email: 'test@test.dev',
+                    email: 'tester@test.dev',
                     password: '123456',
                   }}
                   validationSchema={validationSchema}

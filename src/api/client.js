@@ -14,10 +14,10 @@ apiClient.interceptors.request.use(config => {
 });
 
 const apiPath = {
-  signin: `/auth/signin`,
-  signup: `/auth/signup`,
-  refreshToken: `/auth/refresh`,
-  getHistory: `/auth/get-history`,
+  signin: `/user/login`, // /auth/signin
+  signup: `/user/register`, // /auth/signup
+  refreshToken: `/user/refresh-token`, // /auth/refresh-token
+  getHistory: `/user/get-history`,
 };
 
 export { apiClient, apiPath };
