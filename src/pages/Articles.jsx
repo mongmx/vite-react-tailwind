@@ -1,8 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import PageTitle from '../components/PageTitle'
 import CRUDTable from '../components/CRUDTable/CRUDTable'
-import axios from 'axios'
-import { apiPath } from '../api/client'
+import { apiClient, apiPath } from '../api/client'
 
 const Articles = () => {
   const columns = useMemo(
@@ -34,7 +33,7 @@ const Articles = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(apiPath.articles)
+    apiClient.get(apiPath.articles)
       .then((res) => {
         if (res.status === 200) {
           setData(res.data.articles)
@@ -45,7 +44,7 @@ const Articles = () => {
   }, [])
 
   const fetchData = () => {
-    axios.get(apiPath.articles)
+    apiClient.get(apiPath.articles)
       .then((res) => {
         if (res.status === 200) {
           setData(res.data.articles)
@@ -56,7 +55,7 @@ const Articles = () => {
   }
 
   const handleCreate = (formData) => {
-    axios.post(`${apiPath.articles}`, formData)
+    apiClient.post(`${apiPath.articles}`, formData)
       .then((res) => {
         if (res.status === 201) {
           fetchData()
@@ -67,7 +66,7 @@ const Articles = () => {
   }
 
   const handleUpdate = (formData) => {
-    axios.put(`${apiPath.articles}/${formData.id}`, formData)
+    apiClient.put(`${apiPath.articles}/${formData.id}`, formData)
       .then((res) => {
         if (res.status === 200) {
           fetchData()
@@ -78,7 +77,7 @@ const Articles = () => {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`${apiPath.articles}/${id}`)
+    apiClient.delete(`${apiPath.articles}/${id}`)
       .then((res) => {
         if (res.status === 200) {
           fetchData()
