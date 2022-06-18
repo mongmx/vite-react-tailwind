@@ -1,24 +1,25 @@
-import React, { useMemo, useEffect, useState } from "react";
-import PageTitle from "../components/PageTitle";
-import CRUDTable from "../components/CRUDTable/CRUDTable";
-import axios from "axios";
+import React, { useEffect, useMemo, useState } from 'react'
+import PageTitle from '../components/PageTitle'
+import CRUDTable from '../components/CRUDTable/CRUDTable'
+import axios from 'axios'
+import { apiPath } from '../api/client'
 
-const CRUDTablePage = () => {
+const Articles = () => {
   const columns = useMemo(
     () => [
       {
-        Header: 'ID',
-        accessor: 'id', // accessor is the "key" in the data
+        Header: 'Slug',
+        accessor: 'slug', // accessor is the "key" in the data
         sortType: 'basic',
         fieldType: 'hidden',
-        fieldName: 'id',
+        fieldName: 'slug',
       },
       {
-        Header: 'Name',
-        accessor: 'name', // accessor is the "key" in the data
+        Header: 'Title',
+        accessor: 'title',
         sortType: 'basic',
         fieldType: 'text',
-        fieldName: 'name',
+        fieldName: 'title',
       },
       {
         Header: 'Description',
@@ -33,10 +34,10 @@ const CRUDTablePage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/tasks')
+    axios.get(apiPath.articles)
       .then((res) => {
         if (res.status === 200) {
-          setData(res.data)
+          setData(res.data.articles)
         } else {
           alert("Error Occoured. Try Again")
         }
@@ -44,10 +45,10 @@ const CRUDTablePage = () => {
   }, [])
 
   const fetchData = () => {
-    axios.get('http://localhost:8080/tasks')
+    axios.get(apiPath.articles)
       .then((res) => {
         if (res.status === 200) {
-          setData(res.data)
+          setData(res.data.articles)
         } else {
           alert("Error Occoured. Try Again")
         }
@@ -55,7 +56,7 @@ const CRUDTablePage = () => {
   }
 
   const handleCreate = (formData) => {
-    axios.post(`http://localhost:8080/tasks`, formData)
+    axios.post(`${apiPath.articles}`, formData)
       .then((res) => {
         if (res.status === 201) {
           fetchData()
@@ -66,7 +67,7 @@ const CRUDTablePage = () => {
   }
 
   const handleUpdate = (formData) => {
-    axios.put(`http://localhost:8080/tasks/${formData.id}`, formData)
+    axios.put(`${apiPath.articles}/${formData.id}`, formData)
       .then((res) => {
         if (res.status === 200) {
           fetchData()
@@ -77,7 +78,7 @@ const CRUDTablePage = () => {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8080/tasks/${id}`)
+    axios.delete(`${apiPath.articles}/${id}`)
       .then((res) => {
         if (res.status === 200) {
           fetchData()
@@ -89,16 +90,16 @@ const CRUDTablePage = () => {
 
   return (
     <>
-      <PageTitle>CRUD Table</PageTitle>
+      <PageTitle>Articles</PageTitle>
       <CRUDTable
-        title="Task"
+        title="Articles"
         columns={columns}
         data={data}
         handleCreate={handleCreate}
         handleUpdate={handleUpdate}
         handleDelete={handleDelete} />
     </>
-  );
+  )
 }
 
-export default CRUDTablePage;
+export default Articles

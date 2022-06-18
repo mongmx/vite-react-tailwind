@@ -11,6 +11,7 @@ import Orders from "./Orders";
 import Users from "./Users";
 import CRUDTablePage from "./Crud";
 import History from "./History";
+import Articles from "./Articles";
 
 const pageRoutes = [
     {
@@ -48,6 +49,12 @@ const pageRoutes = [
         icon: <TableIcon className="w-6 h-6 mr-3" />,
         name: 'CRUD Table',
         component: <CRUDTablePage />,
+    },
+    {
+        path: '/app/articles',
+        icon: <UserGroupIcon className="w-6 h-6 mr-3" />,
+        name: 'Articles',
+        component: <Articles />,
     },
     // {
     //     path: '/app',

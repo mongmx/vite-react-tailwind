@@ -18,6 +18,7 @@ const apiPath = {
   signup: `/user/register`, // /auth/signup
   refreshToken: `/user/refresh-token`, // /auth/refresh-token
   getHistory: `/user/get-history`,
+  articles: `/articles`,
 };
 
 export { apiClient, apiPath };
