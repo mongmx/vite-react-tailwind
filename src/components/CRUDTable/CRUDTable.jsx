@@ -5,14 +5,14 @@ import { CreateForm } from "./CreateForm";
 import { UpdateForm } from "./UpdateForm";
 import { DeleteForm } from "./DeleteForm";
 
-const CRUDTable = ({ title, columns, data, handleCreate, handleUpdate, handleDelete }) => {
+const CRUDTable = ({ title, columns, hiddenColumns, data, handleCreate, handleUpdate, handleDelete }) => {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     rows,
     prepareRow,
-  } = useTable({ columns, data }, useSortBy)
+  } = useTable({ columns, data, initialState: { hiddenColumns } }, useSortBy)
 
   const [selected, setSelected] = useState(null);
   const [updateFormOpen, setUpdateFormOpen] = useState(false);

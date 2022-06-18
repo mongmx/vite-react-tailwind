@@ -10,7 +10,7 @@ const Articles = () => {
         Header: 'Slug',
         accessor: 'slug', // accessor is the "key" in the data
         sortType: 'basic',
-        fieldType: 'hidden',
+        fieldType: 'text',
         fieldName: 'slug',
       },
       {
@@ -27,7 +27,23 @@ const Articles = () => {
         fieldType: 'textarea',
         fieldName: 'description',
       },
-    ]
+      {
+        Header: 'Body',
+        accessor: 'body',
+        sortType: 'basic',
+        fieldType: 'textarea',
+        fieldName: 'body',
+      }
+    ],
+    []
+  )
+
+  const hiddenColumns = useMemo(
+    () => [
+      'slug',
+      'body',
+    ],
+    []
   )
 
   const [data, setData] = useState([]);
@@ -94,6 +110,7 @@ const Articles = () => {
         title="Articles"
         columns={columns}
         data={data}
+        hiddenColumns={hiddenColumns}
         handleCreate={handleCreate}
         handleUpdate={handleUpdate}
         handleDelete={handleDelete} />
