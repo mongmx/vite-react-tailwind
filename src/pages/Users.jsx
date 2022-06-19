@@ -1,7 +1,13 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PageTitle from "../components/PageTitle";
 import CRUDTable from "../components/CRUDTable/CRUDTable";
+// import { axios } from "../api/client";
 import axios from "axios";
+
+import { createServer } from "miragejs"
+
+let server = createServer()
+server.get("/api/users", { users: [{ id: 1, name: "Bob", email: "bob@mail.com", role: "admin" }] })
 
 const Users = () => {
   const columns = useMemo(
@@ -41,10 +47,10 @@ const Users = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/users')
+    axios.get('/api/users')
       .then((res) => {
         if (res.status === 200) {
-          setData(res.data)
+          setData(res.data.users)
         } else {
           alert("Error Occoured. Try Again")
         }
@@ -52,10 +58,10 @@ const Users = () => {
   }, [])
 
   const fetchData = () => {
-    axios.get('http://localhost:8080/users')
+    axios.get('/api/users')
       .then((res) => {
         if (res.status === 200) {
-          setData(res.data)
+          setData(res.data.users)
         } else {
           alert("Error Occoured. Try Again")
         }
@@ -63,7 +69,7 @@ const Users = () => {
   }
 
   const handleCreate = (formData) => {
-    axios.post(`http://localhost:8080/users`, formData)
+    axios.post(`/api/users`, formData)
       .then((res) => {
         if (res.status === 201) {
           fetchData()
@@ -74,7 +80,7 @@ const Users = () => {
   }
 
   const handleUpdate = (formData) => {
-    axios.put(`http://localhost:8080/users/${formData.id}`, formData)
+    axios.put(`/api/users/${formData.id}`, formData)
       .then((res) => {
         if (res.status === 200) {
           fetchData()
@@ -85,7 +91,7 @@ const Users = () => {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:8080/users/${id}`)
+    axios.delete(`/api/users/${id}`)
       .then((res) => {
         if (res.status === 200) {
           fetchData()
@@ -101,6 +107,7 @@ const Users = () => {
         title="User"
         columns={columns}
         data={data}
+        hiddenColumns={[]}
         handleCreate={handleCreate}
         handleUpdate={handleUpdate}
         handleDelete={handleDelete} />
