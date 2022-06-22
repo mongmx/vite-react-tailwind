@@ -4,10 +4,10 @@ import CRUDTable from "../components/CRUDTable/CRUDTable";
 // import { axios } from "../api/client";
 import axios from "axios";
 
-import { createServer } from "miragejs"
+// import { createServer } from "miragejs"
 
-let server = createServer()
-server.get("/api/users", { users: [{ id: 1, name: "Bob", email: "bob@mail.com", role: "admin" }] })
+// let server = createServer()
+// server.get("/api/users", { users: [{ id: 1, name: "Bob", email: "bob@mail.com", role: "admin" }] })
 
 const Users = () => {
   const columns = useMemo(

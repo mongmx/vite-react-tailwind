@@ -17,7 +17,7 @@ const Sidebar = () => {
         <div className="inline-flex">
           <Link to="/">
             <div className="inline-flex flex-row items-center">
-              <span className="leading-10 text-gray-100 text-2xl font-bold uppercase">Brandname</span>
+              <span className="leading-10 text-gray-100 text-2xl font-bold uppercase">Chat Manager</span>
             </div>
           </Link>
         </div>

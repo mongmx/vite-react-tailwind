@@ -3,7 +3,8 @@ import {
     CubeIcon,
     ClipboardListIcon,
     UserGroupIcon,
-    TableIcon
+    TableIcon,
+    ChatIcon,
 } from "@heroicons/react/outline";
 import Dashboard from "./Dashboard";
 import Products from "./Products";
@@ -12,6 +13,7 @@ import Users from "./Users";
 import CRUDTablePage from "./Crud";
 import History from "./History";
 import Articles from "./Articles";
+import Chat from "./Chat";
 
 const pageRoutes = [
     {
@@ -55,6 +57,12 @@ const pageRoutes = [
         icon: <UserGroupIcon className="w-6 h-6 mr-3" />,
         name: 'Articles',
         component: <Articles />,
+    },
+    {
+        path: '/app/chat',
+        icon: <ChatIcon className="w-6 h-6 mr-3" />,
+        name: 'Chat',
+        component: <Chat />,
     },
     // {
     //     path: '/app',
