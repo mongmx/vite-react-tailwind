@@ -10,7 +10,7 @@ export default function Layout() {
       <main className="flex flex-col flex-grow">
         <Header />
         <div className="flex flex-col flex-grow p-4 bg-gray-100">
-          <div className="flex flex-col flex-grow shadow-md rounded-lg p-4">
+          <div className="flex flex-col flex-grow p-4">
             <Routes>
               {pageRoutes.map((route) => (
                 <Route path={route.path.replace("/app/","")} element={route.component} key={route.name} />

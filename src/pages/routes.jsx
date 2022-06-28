@@ -14,6 +14,7 @@ import CRUDTablePage from "./Crud";
 import History from "./History";
 import Articles from "./Articles";
 import Chat from "./Chat";
+import SimpleChat from "./SimpleChat";
 
 const pageRoutes = [
     {
@@ -63,6 +64,12 @@ const pageRoutes = [
         icon: <ChatIcon className="w-6 h-6 mr-3" />,
         name: 'Chat',
         component: <Chat />,
+    },
+    {
+        path: '/app/simplechat',
+        icon: <ChatIcon className="w-6 h-6 mr-3" />,
+        name: 'SimpleChat',
+        component: <SimpleChat />,
     },
     // {
     //     path: '/app',
