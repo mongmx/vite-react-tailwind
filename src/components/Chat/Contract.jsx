@@ -6,7 +6,7 @@ import {
 function Contract() {
   return (
     <div>
-      <div className="flex flex-row shadow-md rounded-lg mt-4 pt-4 pr-4 pl-2 w-80 h-24 hover:bg-slate-100 bg-white">
+      <div className="flex flex-row shadow-md rounded-lg mb-2 pt-4 pr-4 pl-2 w-80 h-24 hover:bg-slate-200 bg-white">
         <UserCircleIcon className="flex-none w-12 h-12 mr-2" />
         <div className="flex-auto flex-col">
           <div>Name</div>

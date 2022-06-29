@@ -7,10 +7,10 @@ export default function Layout() {
   return (
     <div className="min-h-screen flex flex-row">
       <Sidebar />
-      <main className="flex flex-col flex-grow">
+      <main className="flex flex-col flex-grow h-screen overflow-hidden">
         <Header />
         <div className="flex flex-col flex-grow p-4 bg-gray-100">
-          <div className="flex flex-col flex-grow p-4">
+          <div className="flex flex-col flex-grow p-4 h-full overflow-hidden">
             <Routes>
               {pageRoutes.map((route) => (
                 <Route path={route.path.replace("/app/","")} element={route.component} key={route.name} />
