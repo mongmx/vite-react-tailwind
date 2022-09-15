@@ -7,7 +7,7 @@ export default function Welcome() {
         <div className="w-auto p-4 bg-white shadow-lg my-16 text-gray-600">
           <div className="mb-10 text-center text-4xl">Welcome to Chat Manager</div>
           <div className="mb-10 text-center">
-            <a href="/login">GO TO APP</a>
+            <a href="/a/login">GO TO APP</a>
           </div>
         </div>
       </div>

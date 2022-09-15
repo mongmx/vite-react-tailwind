@@ -10,11 +10,11 @@ const RoutesComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Welcome />} />
-        <Route path="login" element={<Login />} />
-        <Route path="register" element={<Register />} />
-        <Route path="app/*" element={
-          <RequireAuth loginPath={'/login'}>
+        <Route path="a/" element={<Welcome />} />
+        <Route path="a/login" element={<Login />} />
+        <Route path="a/register" element={<Register />} />
+        <Route path="a/app/*" element={
+          <RequireAuth loginPath={'a/login'}>
             <LayoutSidebar />
           </RequireAuth>
         } />
