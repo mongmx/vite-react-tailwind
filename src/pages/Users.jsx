@@ -1,8 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import PageTitle from "../components/PageTitle";
 import CRUDTable from "../components/CRUDTable/CRUDTable";
-// import { axios } from "../api/client";
-import axios from "axios";
+import { apiClient, apiPath } from "../api/client";
 
 // import { createServer } from "miragejs"
 
@@ -47,7 +46,7 @@ const Users = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/users')
+    apiClient.get(apiPath.users)
       .then((res) => {
         if (res.status === 200) {
           setData(res.data.users)
@@ -58,7 +57,7 @@ const Users = () => {
   }, [])
 
   const fetchData = () => {
-    axios.get('/api/users')
+    apiClient.get(apiPath.users)
       .then((res) => {
         if (res.status === 200) {
           setData(res.data.users)
@@ -69,7 +68,7 @@ const Users = () => {
   }
 
   const handleCreate = (formData) => {
-    axios.post(`/api/users`, formData)
+    apiClient.post(apiPath.users, formData)
       .then((res) => {
         if (res.status === 201) {
           fetchData()
@@ -80,7 +79,7 @@ const Users = () => {
   }
 
   const handleUpdate = (formData) => {
-    axios.put(`/api/users/${formData.id}`, formData)
+    apiClient.put(`${apiPath.users}/${formData.id}`, formData)
       .then((res) => {
         if (res.status === 200) {
           fetchData()
@@ -91,7 +90,7 @@ const Users = () => {
   }
 
   const handleDelete = (id) => {
-    axios.delete(`/api/users/${id}`)
+    apiClient.delete(`${apiPath.users}/${id}`)
       .then((res) => {
         if (res.status === 200) {
           fetchData()

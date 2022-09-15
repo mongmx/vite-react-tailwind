@@ -19,6 +19,7 @@ const apiPath = {
   refreshToken: `/user/refresh-token`, // /auth/refresh-token
   getHistory: `/user/get-history`,
   articles: `/articles`,
+  users: `/users`,
 };
 
 export { apiClient, apiPath };

@@ -1,7 +1,8 @@
 import React, { useMemo, useEffect, useState } from "react";
 import PageTitle from "../components/PageTitle";
 import CRUDTable from "../components/CRUDTable/CRUDTable";
-import axios from "axios";
+import { apiClient } from "../api/client";
+// import axios from "axios";
 
 const CRUDTablePage = () => {
   const columns = useMemo(
@@ -33,7 +34,7 @@ const CRUDTablePage = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:8080/tasks')
+    apiClient.get('http://localhost:8080/tasks')
       .then((res) => {
         if (res.status === 200) {
           setData(res.data)

@@ -71,7 +71,7 @@ const Articles = () => {
   }
 
   const handleCreate = (formData) => {
-    apiClient.post(`${apiPath.articles}`, formData)
+    apiClient.post(`${apiPath.articles}`, {"article":formData})
       .then((res) => {
         if (res.status === 201) {
           fetchData()
@@ -82,7 +82,7 @@ const Articles = () => {
   }
 
   const handleUpdate = (formData) => {
-    apiClient.put(`${apiPath.articles}/${formData.id}`, formData)
+    apiClient.put(`${apiPath.articles}/${formData.id}`, {"article":formData})
       .then((res) => {
         if (res.status === 200) {
           fetchData()
